@@ -37,12 +37,6 @@ const Footer = () => {
                         <Link href="/contacts" className={classes.footerLink} >
                             Контакты
                         </Link>
-                        <Typography className={classes.footerLink} >
-                            Гарантия и возврат
-                        </Typography>
-                        <Typography className={classes.footerLink} >
-                            Оплата и доставка
-                        </Typography>
                     </Box>
                 </Grid>
                 <Grid item xs={12} sm={6} md={3}>
@@ -61,18 +55,6 @@ const Footer = () => {
                     <Link href="/smartphones" className={classes.footerLink}>
                         Смартфоны
                     </Link>
-                    <Typography className={classes.footerLink}>
-                        Распродажа
-                    </Typography>
-                    <Typography className={classes.footerLink}>
-                        Новинки
-                    </Typography>
-                    <Typography className={classes.footerLink}>
-                        Аудио техника
-                    </Typography>
-                    <Typography className={classes.footerLink}>
-                        Аксессуары
-                    </Typography>
                 </Grid>
                 <Grid item xs={12} sm={6} md={3}>
                     <Typography className={classes.footerTitle}>

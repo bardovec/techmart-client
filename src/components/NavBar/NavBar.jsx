@@ -39,12 +39,12 @@ const NavBar = () => {
                     </Grid>
                     <Grid item xs={6} sm={3} md={3} style={{ display: 'flex', justifyContent: 'center' }}>
                         <Button
-                            aria-controls='menu'
+                            aria-controls='catalog'
                             onClick={handleOpenMenu}
                             color="inherit"
                         >
                             <Typography className={classes.linkNavBar}>
-                                Меню
+                                Каталог
                             </Typography>
                         </Button>
                     </Grid>
@@ -66,7 +66,7 @@ const NavBar = () => {
             </Toolbar>
             <Menu
                 className={classes.menu}
-                id='menu'
+                id='catalog'
                 onClose={handleCloseMenu}
                 anchorEl={anchorEl}
                 open={Boolean(anchorEl)}
