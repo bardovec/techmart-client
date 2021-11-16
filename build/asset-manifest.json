@@ -1,0 +1,28 @@
+{
+  "files": {
+    "main.css": "/static/css/main.b83ad061.chunk.css",
+    "main.js": "/static/js/main.2e8b98db.chunk.js",
+    "main.js.map": "/static/js/main.2e8b98db.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.71c5bbf3.js",
+    "runtime-main.js.map": "/static/js/runtime-main.71c5bbf3.js.map",
+    "static/css/2.f806ba04.chunk.css": "/static/css/2.f806ba04.chunk.css",
+    "static/js/2.f8f62a9a.chunk.js": "/static/js/2.f8f62a9a.chunk.js",
+    "static/js/2.f8f62a9a.chunk.js.map": "/static/js/2.f8f62a9a.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/2.f806ba04.chunk.css.map": "/static/css/2.f806ba04.chunk.css.map",
+    "static/css/main.b83ad061.chunk.css.map": "/static/css/main.b83ad061.chunk.css.map",
+    "static/js/2.f8f62a9a.chunk.js.LICENSE.txt": "/static/js/2.f8f62a9a.chunk.js.LICENSE.txt",
+    "static/media/Triangle-Logo.9113555d.svg": "/static/media/Triangle-Logo.9113555d.svg",
+    "static/media/bgImg.53ecf030.jpg": "/static/media/bgImg.53ecf030.jpg",
+    "static/media/facebook.888ec7cb.svg": "/static/media/facebook.888ec7cb.svg",
+    "static/media/google.8b466bdb.svg": "/static/media/google.8b466bdb.svg",
+    "static/media/linkedin.d6c30e26.svg": "/static/media/linkedin.d6c30e26.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.71c5bbf3.js",
+    "static/css/2.f806ba04.chunk.css",
+    "static/js/2.f8f62a9a.chunk.js",
+    "static/css/main.b83ad061.chunk.css",
+    "static/js/main.2e8b98db.chunk.js"
+  ]
+}

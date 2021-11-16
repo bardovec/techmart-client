@@ -1,0 +1,16 @@
+body {
+  font-family: "Roboto", sans-serif;
+  margin: 0;
+  background-color: #e3e5e6;
+}
+
+html {
+    width: 100%;
+}
+
+:root {
+    --main-text: rgb(62,192,221);
+    --main-bg: rgb(222,231,238);
+    --dark-bg: rgb(29, 28, 28);
+    --dark-bg-lightened: rgb(50, 50, 50);
+}
