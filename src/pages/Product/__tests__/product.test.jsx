@@ -1,16 +1,13 @@
 import React from 'react';
-
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import Product from '../Product';
-import Slider from '../../../components/common/Slider/Slider';
 import GarantyIcon from '../../../components/icons/GarantyIcon';
 import CheckCircleIcon from '../../../components/icons/CheckCircleIcon';
 import store from '../../../redux/store';
 
 const phone = {
-  colors: ['white', 'black', '#215787', '#C7F3BD', '#E70012'],
   memory: [64, 128, 256],
 };
 const renderComponent = () => (
@@ -23,21 +20,7 @@ const renderComponent = () => (
 
 describe('Test Product', () => {
   it('Smoke test for Product', () => {
-      renderComponent();
-  });
-
-  it('Slider to be defined', () => {
-    render(
-      <BrowserRouter>
-        <Provider store={store}>
-          <Product>
-            <Slider />
-          </Product>
-        </Provider>
-      </BrowserRouter>,
-    );
-    const slider = document.querySelector('.carousel-root');
-    expect(slider).toBeDefined();
+      render(renderComponent());
   });
 
   it('Smoke test for GarantyIcon', () => {
@@ -64,29 +47,35 @@ describe('Test Product', () => {
     );
   });
 
-  it('Data to be defined', () => {
-    render(
-      renderComponent(),
-    );
-    expect(phone).toBeDefined();
-  });
-
-  it('Check length in received array', () => {
-    render(
-      renderComponent(),
-    );
-    const arr = phone.colors.map((color) => color);
-    expect(arr).toHaveLength(arr.length);
-  });
-
   it('Check array in received params colors', () => {
     render(
       renderComponent(),
     );
-    expect(['white', 'black', '#215787', '#C7F3BD', '#E70012']).toEqual(
-      expect.arrayContaining(phone.colors),
+    
+    const btnColor = screen.queryAllByRole('btnColor') 
+    const mockProductColors = [{ color: 'red' }, { color: 'blue' }];
+    const color = 'red';
+    const choseProduct = mockProductColors.find((prod) => prod.color === color);
+    expect(choseProduct.color).toBe('red');
+    
+    const mockFn = jest.fn();
+    btnColor.forEach((btn)=> {
+      btn.click(mockFn(color));
+      expect(mockFn).toHaveBeenCalled();
+    })
+    expect(mockProductColors.length).toBe(2);
+    
+  });
+
+  it('It map colors from objects', () => {
+    render(
+      renderComponent()
     );
-    expect(['white', 'black']).not.toEqual(expect.arrayContaining(phone.colors));
+    const mockProductColors = [{ color: 'red' }, { color: 'blue' }];
+    const colors = mockProductColors.map((el) => el.color)
+    expect(colors[0]).toBe('red');
+    expect(['red', 'blue']).toEqual(expect.arrayContaining(colors));
+    expect(colors.length).toBe(2);
   });
 
   it('Check array in received params memory', () => {
@@ -98,36 +87,24 @@ describe('Test Product', () => {
   });
 
   it('OnClick button Buy in Product', () => {
-    const onClick = jest.fn();
     render(
-      <BrowserRouter>
-        <Provider store={store}>
-          <Product />
-        </Provider>
-      </BrowserRouter>,
+      renderComponent()
     );
-
-    const button = document.getElementById('buyBtn');
+    const button = screen.getByRole('buyBtn');
     expect(button).toBeDefined();
-    button.addEventListener('click', onClick);
-    button.click();
-    expect(onClick).toHaveBeenCalled();
+    const mockFn = jest.fn();
+    button.click(mockFn());
+    expect(mockFn).toHaveBeenCalled();
   });
 
   it('OnClick button Buy in Credit in Product', () => {
-    const onClick = jest.fn();
     render(
-      <BrowserRouter>
-        <Provider store={store}>
-          <Product />
-        </Provider>
-      </BrowserRouter>,
+      renderComponent()
     );
-
-    const button = document.getElementById('btnBuyInCredit');
+    const button = screen.getByRole('btnBuyInCredit');
     expect(button).toBeDefined();
-    button.addEventListener('click', onClick);
-    button.click();
-    expect(onClick).toHaveBeenCalled();
+    const mockFn = jest.fn();
+    button.click(mockFn());
+    expect(mockFn).toHaveBeenCalled();
   });
 });
