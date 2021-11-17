@@ -8,6 +8,9 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: '10px',
     boxShadow: '0px 0px 10px 1px rgba(0, 0, 0, 0.1)',
   },
+  productPhotos: {
+    height: '480px',
+  },
   coloredBtn: {
     marginRight: '10px',
     borderRadius: '50%',
