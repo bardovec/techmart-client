@@ -16,6 +16,7 @@ import { useActions } from '../../hooks/useActions';
 import { useLocation } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import ProductDetailsTabs from "../../components/common/ProductDetailsTabs";
+import ProductPhotos from './ProductPhotos';
 
 const phone = {
   memory: [64, 128, 256],
@@ -66,7 +67,9 @@ const Product = () => {
             md={6}
             className={(classes.mainSlider, classes.item)}
           >
-            <Slider images={product.imageUrls} />
+            <ProductPhotos className={classes.productPhotos}
+              images={product.imageUrls}
+              productName={product.name}/>
           </Grid>
 
           <Grid item xs={12} sm={4} md={3} className={classes.item}>

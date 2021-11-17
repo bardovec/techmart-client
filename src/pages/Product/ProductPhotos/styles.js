@@ -1,11 +1,21 @@
 import { makeStyles } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
-  mainSlider: {
+  loaderContainer: {
+    width: '100%',
     height: '100%',
     display: 'flex',
-    flexDirection: 'row-reverse',
-    textAlign: 'center',
+    alignItems: 'center',
+    placeContent: 'center',
+  },
+  productPhotosCarousel: {
+    height: '100%',
+    display: 'flex',
+    flexDirection: 'column',
+    '& li, & ul': {
+      listStyle: 'none',
+    },
+
     '& img': {
       objectFit: 'contain',
     },
@@ -18,40 +28,36 @@ const useStyles = makeStyles((theme) => ({
         },
       },
     },
-    '& .carousel': {
-      flexBasis: '20%',
-    },
-    '& .carousel-slider': {
-      flexBasis: '80%',
+
+    '& .thumbs': {
+      padding: '0px',
+      margin: '0px',
       display: 'flex',
+      justifyContent: 'space-around',
     },
 
     '& .thumb': {
       opacity: 0.5,
       height: '120px',
-    },
+      borderRadius: '5px',
 
-    '& .thumbs': {
-      padding: '0px',
-      display: 'flex',
-      flexDirection: 'column ',
-      alignAtems: 'center',
-    },
-
-    '& .thumb.selected': {
-      border: 'none',
-      opacity: 1,
+      '&.selected': {
+        border: '3px solid gray',
+        opacity: 1,
+      },
     },
 
     '& .thumbs-wrapper ': {
-      margin: '0px 10px',
+      margin: '0',
+      padding: '10px',
     },
 
-    '& .control-dots, .control-arrow, .carousel-status, .control-next': {
-      display: 'none',
+    '& .carousel-status': {
+      boxShadow: '0px 0px 10px 5px rgb(0 0 0 / 10%)',
+      background: 'rgb(0 0 0 / 10%)',
+      top: '5px',
+      right: '15px',
     },
-
-
   },
 
   [theme.breakpoints.down('sm')]: {
@@ -62,10 +68,6 @@ const useStyles = makeStyles((theme) => ({
 
       '& .carousel': {
         width: '100%',
-      },
-
-      '& .carousel .slide': {
-        marginBottom: '118px',
       },
 
       '& .thumbs': {
@@ -86,10 +88,6 @@ const useStyles = makeStyles((theme) => ({
 
       '& .thumbs': {
         flexDirection: 'row',
-      },
-
-      '& .carousel .slide': {
-        marginBottom: '97px',
       },
     },
   },

@@ -13,16 +13,13 @@ const Slider = ({ images }) => {
       verticalSwipe='standard'
       thumbWidth='20'
       ariaLabel='slider'
-      showIndicators={false}
+      showStatus
+      swipeable
+      emulateTouch
     >
-      {images ? images.map((image, index) => (
-        <div key={index}>
-          <img src={image} alt='iphone' width='100%' height='100%' />
-        </div>
-      ))
-        :
-        null
-      }
+      {images?.map((image, index) => (
+          <img key={index+image} src={image} alt='iphone' width='100%' height='100%' />
+      ))}
     </Carousel>
   );
 };
