@@ -5,7 +5,7 @@ import Admin from "../pages/Admin";
 import Products from "../pages/Products";
 import Product from "../pages/Product";
 import Contacts from "../pages/Contacts";
-import Checkout from "../pages/Checkout";
+import Checkout from "../pages/Checkout/Checkout";
 import Signup from "../pages/Signup";
 import Signin from "../pages/Signin";
 import AboutUs from "../pages/AboutUs/index";
