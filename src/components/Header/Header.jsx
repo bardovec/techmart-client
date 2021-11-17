@@ -36,7 +36,7 @@ const Header = () => {
                 spacing={2}
                 style={{ margin: 0, width: '100%', alignItems: 'center' }}
             >
-                <Grid item xs={9} sm={6} md={2} className={classes.gridLogo}>
+                <Grid item xs={9} sm={!userInfo ? 6 : 7} md={2} className={classes.gridLogo}>
                     <Logo />
                 </Grid>
                 <Grid item xs={12} sm={12} md={6} className={classes.gridInput}>
@@ -58,7 +58,8 @@ const Header = () => {
                         </Grid>
                     </Box>
                 </Grid>
-                <Grid item xs={3} sm={1} md={1} className={classes.gridCart}>
+
+                <Grid item xs={3} sm={!userInfo ? 1 : 2} md={1} className={classes.gridCart}>
                     <Button color='inherit'>
                         <NavLink to='/cart'>
                             <svg width='35' height='35' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg' stroke='white' strokeLinecap='round' strokeLinejoin='round' className={classes.shoppingCart}>
@@ -70,7 +71,7 @@ const Header = () => {
                         </NavLink>
                     </Button>
                 </Grid>
-                <Grid item xs={12} sm={5} md={3} className={classes.gridLogin}>
+                <Grid item xs={12} sm={!userInfo ? 5 : 2} md={3} className={classes.gridLogin}>
                     <Grid
                         container
                         spacing={2}
@@ -87,19 +88,22 @@ const Header = () => {
                             </Grid>
 
                             :
-                            <Grid item xs={6} sm={4} md={4} style={{ display: 'flex', justifyContent: 'center' }}>
+                            <Grid item xs={12} sm={12} md={12} style={{ display: 'flex', justifyContent: 'center' }}>
                                 <Button color='inherit' onClick={logout} className={classes.linkCoponent} aria-label='logout-btn'>
                                     Выйти
                                 </Button>
                             </Grid>
                         }
-                        <Grid item xs={6} sm={8} md={8} style={{ display: 'flex', justifyContent: 'center' }}>
-                            <Button color='inherit'>
-                                <NavLink to='/signup' className={classes.linkCoponent}>
-                                    Регистрация
-                                </NavLink>
-                            </Button>
-                        </Grid>
+                        {
+                            !userInfo &&
+                            <Grid item xs={6} sm={8} md={8} style={{ display: 'flex', justifyContent: 'center' }}>
+                                <Button color='inherit'>
+                                    <NavLink to='/signup' className={classes.linkCoponent}>
+                                        Регистрация
+                                    </NavLink>
+                                </Button>
+                            </Grid>
+                        }
                     </Grid>
                 </Grid>
             </Grid>

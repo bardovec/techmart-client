@@ -1,38 +1,41 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { Link } from '@material-ui/core';
+import { Box } from '@material-ui/core';
 import SigninForm from './SigninForm';
 import { useStyles } from './styles';
-import { useActions } from '../../hooks/useActions';
+import { useHistory } from 'react-router-dom'
 
 const userLoginSelector = (state) => state.userLogin;
 
 const Signin = () => {
-  const { userInfo } = useSelector(userLoginSelector);
-  const { logout } = useActions();
-  const classes = useStyles();
+    const { userInfo } = useSelector(userLoginSelector);
+    const history = useHistory();
+    const classes = useStyles();
 
-  return (
-    <section className='signin-page'>
-      <div className={classes.wrapper}>
-        {userInfo
-          ? (
-            <>
-              <h3>Вы уже представились системе</h3>
-              <p>
-                Для выхода из аккаунта&nbsp;
-                <Link className={classes.link} onClick={logout}>нажмите здесь</Link>
-              </p>
-            </>
-          ) : (
-            <>
-              <h2 className={classes.title}>Авторизация</h2>
-              <SigninForm />
-            </>
-          )}
-      </div>
-    </section>
-  );
+    const redirect = () => {
+        setTimeout(() => {
+            history.push('/');
+        }, 1000)
+    }
+
+    return (
+        <section className='signin-page'>
+            <div className={classes.wrapper}>
+                {userInfo
+                    ? (
+                        <Box className={classes.itemLogin}>
+                            <h2>Авторизация успешна</h2>
+                            {redirect()}
+                        </Box>
+                    ) : (
+                        <>
+                            <h2 className={classes.title}>Авторизация</h2>
+                            <SigninForm />
+                        </>
+                    )}
+            </div>
+        </section>
+    );
 };
 
 export default Signin;
