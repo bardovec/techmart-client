@@ -1,11 +1,11 @@
 import {
-  USER_LOGIN_FAIL,
-  USER_LOGIN_REQUEST,
-  USER_LOGIN_SUCCESS,
-  USER_LOGOUT,
-  USER_REGISTER_FAIL,
-  USER_REGISTER_REQUEST,
-  USER_REGISTER_SUCCESS,
+    USER_LOGIN_FAIL,
+    USER_LOGIN_REQUEST,
+    USER_LOGIN_SUCCESS,
+    USER_LOGOUT,
+    USER_REGISTER_FAIL,
+    USER_REGISTER_REQUEST,
+    USER_REGISTER_SUCCESS,
 } from '../constants/userConstants';
 import UserService from '../../services/UserService';
 
@@ -15,34 +15,35 @@ import UserService from '../../services/UserService';
 // };
 
 export const login = (userData) => async (dispatch) => {
-  try {
-    dispatch({
-      type: USER_LOGIN_REQUEST,
-    });
+    try {
+        dispatch({
+            type: USER_LOGIN_REQUEST,
+        });
 
-    const data = await UserService.signin(userData);
+        const data = await UserService.signin(userData);
 
-    dispatch({
-      type: USER_LOGIN_SUCCESS,
-      payload: data,
-    });
+        dispatch({
+            type: USER_LOGIN_SUCCESS,
+            payload: data,
+        });
 
-    localStorage.setItem('userInfo', JSON.stringify(data));
-  } catch (error) {
-    dispatch({
-      type: USER_LOGIN_FAIL,
-      payload:
-        error.response && error.response.data.message
-          ? error.response.data.message
-          : error.message,
-    });
-  }
+        localStorage.setItem('userInfo', JSON.stringify(data));
+    } catch (error) {
+        dispatch({
+            type: USER_LOGIN_FAIL,
+            payload:
+                error.response && error.response.data.message
+                    ? error.response.data.message
+                    : error.message,
+        });
+    }
 };
 
 export const logout = () => (dispatch) => {
-  localStorage.removeItem('userInfo');
-  localStorage.removeItem('cartItems');
-  dispatch({ type: USER_LOGOUT });
+    localStorage.removeItem('userInfo');
+    localStorage.removeItem('cartItems');
+    localStorage.removeItem('token');
+    dispatch({ type: USER_LOGOUT });
 };
 
 // const newCustomer = {
@@ -58,31 +59,31 @@ export const logout = () => (dispatch) => {
 // },
 
 export const register = (newCustomer) => async (dispatch) => {
-  try {
-    dispatch({
-      type: USER_REGISTER_REQUEST,
-    });
+    try {
+        dispatch({
+            type: USER_REGISTER_REQUEST,
+        });
 
-    const data = await UserService.signup(newCustomer);
+        const data = await UserService.signup(newCustomer);
 
-    dispatch({
-      type: USER_REGISTER_SUCCESS,
-      payload: data,
-    });
+        dispatch({
+            type: USER_REGISTER_SUCCESS,
+            payload: data,
+        });
 
-    dispatch({
-      type: USER_LOGIN_SUCCESS,
-      payload: data,
-    });
+        dispatch({
+            type: USER_LOGIN_SUCCESS,
+            payload: data,
+        });
 
-    localStorage.setItem('userInfo', JSON.stringify(data));
-  } catch (error) {
-    dispatch({
-      type: USER_REGISTER_FAIL,
-      payload:
-        error.response && error.response.data.message
-          ? error.response.data.message
-          : error.message,
-    });
-  }
+        localStorage.setItem('userInfo', JSON.stringify(data));
+    } catch (error) {
+        dispatch({
+            type: USER_REGISTER_FAIL,
+            payload:
+                error.response && error.response.data.message
+                    ? error.response.data.message
+                    : error.message,
+        });
+    }
 };
