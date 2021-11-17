@@ -13,9 +13,10 @@ import Slider from '../../components/common/Slider/Slider';
 import GarantyIcon from '../../components/icons/GarantyIcon';
 import CheckCircleIcon from '../../components/icons/CheckCircleIcon';
 import { useActions } from '../../hooks/useActions';
+import { useLocation } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import ProductDetailsTabs from "../../components/common/ProductDetailsTabs";
 
-const mockId = '684124';
 const phone = {
   memory: [64, 128, 256],
 };
@@ -25,7 +26,10 @@ const Product = () => {
   const { addToCart } = useActions();
   const { listProductDetails } = useActions();
   const { listProductColors } = useActions();
+  let location = useLocation();
+  let history = useHistory();
 
+  const id = parseInt(location.pathname.match(/[0-9]+/));
   const product = useSelector(state => state.productDetails.product);
   const productColors = useSelector(state => state.productDetails.productColors);
   const phoneColorArr = productColors.map((prod) => prod.color);
@@ -33,21 +37,20 @@ const Product = () => {
   const changeProduct = (color) => {
     const choseProduct = productColors.find((prod) => prod.color === color);
     listProductDetails(choseProduct.itemNo);
+    history.push(choseProduct.itemNo)
   };
-  const addToCartHandler = (mockId) => {
-    addToCart(mockId);
+  const addToCartHandler = (id) => {
+    addToCart(id);
   };
   useEffect(() => {
-    listProductDetails(mockId);
-    listProductColors(product.name);
-  }, [mockId]);
+    listProductDetails(id);
+    listProductColors(id);
+  }, [id]);
   return (
     <Container maxWidth='lg'>
       <Box className={classes.cardWrapper}>
         <Typography variant='h5' className={classes.header}>
-          {product.brand}
-          {product.name}
-          {product.color}
+          {product.brand} {product.name} {product.color}
         </Typography>
 
         <Grid
@@ -73,6 +76,7 @@ const Product = () => {
             <Grid container spacing={2} className={classes.container}>
               {phoneColorArr.map((color, index) => (
                 <IconButton
+                  role='btnColor'
                   onClick={() => changeProduct(color)}
                   key={index}
                   variant='outlined'
@@ -88,7 +92,7 @@ const Product = () => {
             <Typography variant='h4' className={classes.price}>
               {product.currentPrice} грн
             </Typography>
-            <Button className={classes.productButton} id='buyBtn' onClick={() => addToCartHandler(mockId)}>
+            <Button className={classes.productButton} role='buyBtn' onClick={() => addToCartHandler(id)}>
               Купить
             </Button>
           </Grid>
@@ -115,7 +119,7 @@ const Product = () => {
               </Typography>
             </Grid>
               {product.enabled ? 
-                <Grid container spacing={3} className={classes.text}>
+                <Grid container spacing={3} className={classes.text} >
                   <CheckCircleIcon />
                   <Typography variant='body1' className={classes.exist}>
                     Есть в наличии
@@ -130,8 +134,8 @@ const Product = () => {
             <Button
               valiant='outlined'
               className={classes.productButton}
-              id='btnBuyInCredit'
-              onClick={() => addToCartHandler(mockId)}
+              role='btnBuyInCredit'
+              onClick={() => addToCartHandler(id)}
             >
               Купить в кредит
             </Button>

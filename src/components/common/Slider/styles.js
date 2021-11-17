@@ -9,10 +9,12 @@ const useStyles = makeStyles((theme) => ({
     textAlign: 'center',
     '& .carousel': {
       width: '170px',
+    //  height: '500px',
     },
 
     '& .thumb': {
       opacity: 0.5,
+      height: '120px',
     },
 
     '& .thumbs': {
@@ -29,6 +31,7 @@ const useStyles = makeStyles((theme) => ({
 
     '& .thumbs-wrapper ': {
       margin: '0px 10px',
+      height: '500px',
     },
 
     '& .control-dots, .control-arrow, .carousel-status, .control-next': {
@@ -36,7 +39,7 @@ const useStyles = makeStyles((theme) => ({
     },
 
     '& .carousel .slide': {
-      marginBottom: '134px',
+      // marginBottom: '134px',
     },
   },
 

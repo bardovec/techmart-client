@@ -108,11 +108,13 @@ export const listProductDetails = (id) => async (dispatch) => {
   }
 };
 
-export const listProductColors = (name) => async (dispatch) => {
+export const listProductColors = (id) => async (dispatch) => {
   try {
     const products = await ProductService.getAll();
-    const productColors = products.filter((prod) => prod.name === name);
-
+    const product = products.find((el) => +el.itemNo === +id);
+   // console.log(product);
+   const productColors = products.filter((prod) => prod.name === product.name)
+  console.log(productColors);
     dispatch({
       type: PRODUCT_DETAILS_COLORS,
       payload: productColors,
