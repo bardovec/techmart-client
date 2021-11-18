@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useCallback } from 'react';
 import { useSelector } from 'react-redux';
 import {
   Grid,
@@ -13,10 +13,10 @@ import Slider from '../../components/common/Slider/Slider';
 import GarantyIcon from '../../components/icons/GarantyIcon';
 import CheckCircleIcon from '../../components/icons/CheckCircleIcon';
 import { useActions } from '../../hooks/useActions';
-import { useLocation } from "react-router-dom";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import ProductDetailsTabs from "../../components/common/ProductDetailsTabs";
 import ProductPhotos from './ProductPhotos';
+import Loader from '../../components/common/Loader';
 
 const phone = {
   memory: [64, 128, 256],
@@ -24,14 +24,11 @@ const phone = {
 
 const Product = () => {
   const classes = useStyles();
-  const { addToCart } = useActions();
-  const { listProductDetails } = useActions();
-  const { listProductColors } = useActions();
+  const { addToCart, listProductDetails, listProductColors} = useActions();
   let location = useLocation();
   let history = useHistory();
 
   const id = parseInt(location.pathname.match(/[0-9]+/));
-  const product = useSelector(state => state.productDetails.product);
   const productColors = useSelector(state => state.productDetails.productColors);
   const phoneColorArr = productColors.map((prod) => prod.color);
 
@@ -40,13 +37,28 @@ const Product = () => {
     listProductDetails(choseProduct.itemNo);
     history.push(choseProduct.itemNo)
   };
-  const addToCartHandler = (id) => {
-    addToCart(id);
-  };
   useEffect(() => {
     listProductDetails(id);
     listProductColors(id);
   }, [id]);
+
+
+  const { product, loading, error } = useSelector((state) => state.productDetails);
+  const productLoaded = !loading && !error;
+
+  const addToCartHandler = useCallback(() => {
+    addToCart(id);
+  }, [addToCart, id]);
+
+  if (!productLoaded) {
+    return (
+      <Box className={classes.cardWrapper}>
+          <Loader />
+      </Box>
+    );
+  }
+
+
   return (
     <Container maxWidth='lg'>
       <Box className={classes.cardWrapper}>
